@@ -10,13 +10,13 @@ This guide will show you how to prepare GKE cluster and install the AI applicati
 
 Click the **START** button to move to the next step.
 
-## What is AI-on-GKE
+## What is GenAI-on-GKE
 
-The AI-on-GKE provides <<COMPLETE THIS>>
+Within gke-platform folder code exists to spin up GKE cluster and optionally spin up jupyternotebook to run the genai workloads on like stable diffusion and llama models code for which is already present in respective folders , for falcon we have dockerfile in falcon/docker_image folder through which we can create a working docker image of a falcon inference example through streamlit , here we would need to pass in environment variable HUGGINGFACEHUB_API_TOKEN with respective users token / service account user token
 
 
 
-Next, you'll provide inputs parameters and launch a AI-on-GKE tutorial.
+Next, you'll provide inputs parameters and launch a GenAI-on-GKE tutorial.
 
 ## Step 0: Set your project
 To set your Cloud Platform project in this terminal session use:
@@ -86,7 +86,7 @@ Refer [here](https://cloud.google.com/docs/terraform/resource-management/store-s
 ###  [Optional] APPLICATION Terraform State Backend
 
 Modify the ./workloads/backend.tf and uncomment the code and update the backend bucket name.
-<walkthrough-editor-open-file filePath="./workloads/backend.tf"> Open ./workloads/backend.tf
+<walkthrough-editor-open-file filePath="./gke-platform/backend.tf"> Open ./workloads/backend.tf
 </walkthrough-editor-open-file>
 
 After changes file will look like below:
@@ -101,7 +101,7 @@ terraform {
 
 Refer [here](https://cloud.google.com/docs/terraform/resource-management/store-state) for more details.
 
-## Step 4: Configure Cloud Build Service Account
+## Step 4: Run Terraform
 
 The Cloud Build service that orchestrates the environment creation requires a Service Account. Please run the following steps to create it and grant the roles required for deployment.
 ```bash

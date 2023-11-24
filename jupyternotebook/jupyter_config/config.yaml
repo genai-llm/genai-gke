@@ -49,9 +49,24 @@ singleuser:
     guarantee: 1G
   nodeSelector:
     iam.gke.io/gke-metadata-server-enabled: "true"
+  storage:
+    type: dynamic
+    extraLabels: {}
+    extraVolumes: []
+    extraVolumeMounts: []
+    static:
+      pvcName:
+      subPath: "{username}"
+    capacity: 70Gi
+    homeMountPath: /home/jovyan
+    dynamic:
+      storageClass:
+      pvcNameTemplate: claim-{username}{servername}
+      volumeNameTemplate: volume-{username}{servername}
+      storageAccessModes: [ReadWriteOnce]
   image:
-    name: jupyter/tensorflow-notebook
-    tag: python-3.10
+    name: jupyterhub/k8s-singleuser-sample
+    tag: "3.1.0"
   startTimeout: 700
 # More info on kubespawner overrides: https://jupyterhub-kubespawner.readthedocs.io/en/latest/spawner.html#kubespawner.KubeSpawner
 #   profile example:
