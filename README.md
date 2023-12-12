@@ -39,7 +39,6 @@ cd stable-diffusion2
 cd llama2-7b-huggingface-gradio
 ```
  - Openai
- - llama2
  ```commandline
 cd openai
 ```
