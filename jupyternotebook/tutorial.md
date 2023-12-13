@@ -1,11 +1,12 @@
 
+
 ## Let's get started!
 
 Welcome to the Cloudshell tutorial for AI on GKE!
 
 This guide will show you how to prepare a GKE cluster and install the AI applications on GKE. It'll also walk you through the configuration files that can be provided with custom inputs and commands that will complete the tutorial.
 
-**Time to complete**: About 20 minutes
+**Time to complete**: About 5 minutes
 
 **Prerequisites**: GCP project linked with a Cloud Billing account
 
@@ -17,10 +18,8 @@ This tutorial Terraform & Cloud Build to provision the infrastructure as well as
 
 ## Architecture
 Defaults:
-- Creates a new VPC & subnet (can be disabled)
-- Creates Private Clusters with external endpoints disabled
-- Registers the cluster with fleet in current project
-- Solution uses Anthos Connect Gateway to connect to private clusters
+- Installs CUDA drivers for nvidia tesla t4 GPU machines
+- Deploy Helm Chart for Jupyter hub with an option to change the cpu, memory , gpu etc.
 
 You'll be performing the following activities:
 
@@ -42,16 +41,16 @@ All the resources will be created in this project
 
 ## Step 1: Provide PLATFORM Inputs Parameters for Terraform
 
-Here on step 1 you need to update the PLATFORM terraform tfvars file (located in ./platform/platform.tfvars) to provide the input parameters to allow terraform code execution to provision GKE resources. This will include the input parameters in the form of key value pairs. Update the values as per your requirements.
+Here on step 1 you need to update the  terraform variables  file (located in ./jupyternotebook/variables.tf) to provide the input parameters to allow terraform code execution to provision GKE resources. This will include the input parameters in the form of key value pairs. Update the values as per your requirements.
 
-<walkthrough-editor-open-file filePath="./platform/terraform.tfvars"> Open platform.tfvars
+<walkthrough-editor-open-file filePath="./jupyternotebook/variables.tf"> Open variables.tf
 </walkthrough-editor-open-file>
 
-Update `project_id` and review the other default values.
+Update `project_id` `region` `cluster_name` and review the other default values.
 
 **Tip**: Click the highlighted text above to open the file in your cloudshell editor.
 
-You can find tfvars examples in the tfvars_examples folder.
+
 
 
 
@@ -69,10 +68,10 @@ gcloud storage buckets create gs://BUCKET_NAME
 **Tip**: Click the copy button on the side of the code box to paste the command in the Cloud Shell terminal to run it.
 
 
-### Modify PLATFORM Terraform State Backend
+### Modify  Terraform State Backend
 
 Modify the ./platform/backend.tf and uncomment the code and update the backend bucket name.
-<walkthrough-editor-open-file filePath="./platform/backend.tf"> Open ./platform/backend.tf
+<walkthrough-editor-open-file filePath="./jupyternotebook/backend.tf"> Open backend.tf
 </walkthrough-editor-open-file>
 
 After changes file will look like below:
