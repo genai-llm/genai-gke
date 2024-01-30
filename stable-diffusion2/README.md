@@ -71,3 +71,5 @@ The use of the assets contained in this repository is subject to compliance with
 
 Also If any changes are required in terms of how the jupyternotebook needs to be deployed changes are required to the below file
 [`config`](../jupyternotebook/jupyter_config/config.yaml)
+
+Stable Diffusion has  [`two files`](./stable_diffusion_on_ray.ipynb) to be tested on notebooks
