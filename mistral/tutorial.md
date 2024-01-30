@@ -1,7 +1,7 @@
 
 ## Let's get started!
 
-Welcome to the Cloudshell tutorial for AI on GKE!
+Welcome to the Cloudshell tutorial for AI on GKE! this is mistral
 
 This guide will show you how to prepare a GKE cluster and install the AI applications on GKE. It'll also walk you through the configuration files that can be provided with custom inputs and commands that will complete the tutorial.
 
