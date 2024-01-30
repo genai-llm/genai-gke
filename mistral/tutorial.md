@@ -46,7 +46,7 @@ All the resources will be created in this project
 
 Here on step 1 you need to update the PLATFORM terraform tfvars file (located in ./platform/platform.tfvars) to provide the input parameters to allow terraform code execution to provision GKE resources. This will include the input parameters in the form of key value pairs. Update the values as per your requirements.
 
-<walkthrough-editor-open-file filePath="../platform/platform/terraform.tfvars"> Open platform.tfvars
+<walkthrough-editor-open-file filePath="./platform/platform/terraform.tfvars"> Open platform.tfvars
 </walkthrough-editor-open-file>
 
 Update `project_id` and review the other default values.
