@@ -1,7 +1,7 @@
 
 ## Let's get started!
 
-Welcome to the Cloudshell tutorial for AI on GKE! this is mistral
+Welcome to the Cloudshell tutorial for AI on GKE!
 
 This guide will show you how to prepare a GKE cluster and install the AI applications on GKE. It'll also walk you through the configuration files that can be provided with custom inputs and commands that will complete the tutorial.
 
@@ -28,7 +28,9 @@ You'll be performing the following activities:
 2. Update terraform variable values to create infrastructure
 3. Update terraform variable values to provide workload configuration
 4. Create a GCS bucket to store terraform state
-5. Terraform plan and apply
+5. Create GKE Cluster with Fleet Membership Enabled
+6. Created Jupyternotebook K8s Object to spin Notebooks
+7. Deploy Demo Mistral workload
 
 
 To get started, click **Next**.
@@ -44,7 +46,7 @@ All the resources will be created in this project
 
 Here on step 1 you need to update the PLATFORM terraform tfvars file (located in ./platform/platform.tfvars) to provide the input parameters to allow terraform code execution to provision GKE resources. This will include the input parameters in the form of key value pairs. Update the values as per your requirements.
 
-<walkthrough-editor-open-file filePath="./platform/terraform.tfvars"> Open platform.tfvars
+<walkthrough-editor-open-file filePath="../platform/platform/terraform.tfvars"> Open platform.tfvars
 </walkthrough-editor-open-file>
 
 Update `project_id` and review the other default values.
