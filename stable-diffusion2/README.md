@@ -14,7 +14,7 @@ The use of the assets contained in this repository is subject to compliance with
 * See [LICENSE](/LICENSE)
 
 
-**Below are the variables required to get the GKE cluster up with Autopilot / standard , private / public , TPU enabled / Disabled , GPU Enabled / Disabled etc . So please go through below varibales to understand if those are required to be changed or not.**
+**Below are the variables required to get the GKE cluster up with Autopilot / standard , private / public , TPU enabled / Disabled , GPU Enabled / Disabled etc . So please go through below variables to understand if those are required to be changed or not.**
 #
 
 <!-- BEGIN TFDOC -->
