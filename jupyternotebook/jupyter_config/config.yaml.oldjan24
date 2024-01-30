@@ -42,11 +42,11 @@ scheduling:
 
 singleuser:
   cpu:
-    limit: 8
-    guarantee: 8
+    limit: .5
+    guarantee: .5
   memory:
-    limit: 24G
-    guarantee: 24G
+    limit: 1G
+    guarantee: 1G
   nodeSelector:
     iam.gke.io/gke-metadata-server-enabled: "true"
   storage:
@@ -57,7 +57,7 @@ singleuser:
     static:
       pvcName:
       subPath: "{username}"
-    capacity: 140Gi
+    capacity: 70Gi
     homeMountPath: /home/jovyan
     dynamic:
       storageClass:
@@ -92,18 +92,20 @@ singleuser:
       default: true
       kubespawner_override:
         extra_resource_limits:
-          ephemeral-storage: '20Gi'
+          ephemeral-storage: '80Gi'
         extra_resource_guarantees:
-          ephemeral-storage: '20Gi'
+          ephemeral-storage: '80Gi'
     - display_name: "GPU T4"
       description: "Creates GPU VMs (T4) as the compute for notebook execution"
       kubespawner_override:
-        image: us-docker.pkg.dev/genai-poc-403304/jupyter-gpu/jupyter-gpu:mistralv2
+        image: cschranz/gpu-jupyter:v1.5_cuda-11.6_ubuntu-20.04
         extra_resource_limits:
           # number of gpus needed on the node
           nvidia.com/gpu: "4"
+          ephemeral-storage: '80Gi'
         extra_resource_guarantees:
           nvidia.com/gpu: "4"
+          ephemeral-storage: '80Gi'
       #  possible values: nvidia-tesla-k80, nvidia-tesla-p100, nvidia-tesla-p4, nvidia-tesla-v100, nvidia-tesla-t4, nvidia-tesla-a100, nvidia-a100-80gb, nvidia-l4
         node_selector:
           cloud.google.com/gke-accelerator: "nvidia-tesla-t4"
