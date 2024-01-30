@@ -18,7 +18,7 @@ The use of the assets contained in this repository is subject to compliance with
 #
 
 <!-- BEGIN TFDOC -->
-## GKE Infra Variables
+##  [`GKE Infra Variables`](../platform/platform/variables.tf)
 
 | name | description | type | required | default |
 |---|---|:---:|:---:|:---:|
@@ -60,7 +60,7 @@ The use of the assets contained in this repository is subject to compliance with
 
 **Simlilarly below is the file for updating variables for creating Jupyternotebook**
 
-## Jupyternotebook Variables
+## [`Jupyternotebook Variables`](../jupyternotebook/variables.tf)
 
 | name | description | sensitive |
 |---|---|:---:|
