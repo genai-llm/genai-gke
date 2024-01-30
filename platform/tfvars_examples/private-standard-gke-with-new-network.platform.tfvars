@@ -13,7 +13,7 @@
 # limitations under the License.
 
 ##common variables
-project_id = "umeshkumhar"
+project_id = ""
 
 #######################################################
 ####    PLATFORM
@@ -150,5 +150,3 @@ all_node_pools_metadata = {
 }
 
 all_node_pools_tags = ["gke-node", "ai-on-gke"]
-
-
