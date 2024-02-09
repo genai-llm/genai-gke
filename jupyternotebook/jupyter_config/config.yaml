@@ -98,7 +98,7 @@ singleuser:
     - display_name: "GPU T4"
       description: "Creates GPU VMs (T4) as the compute for notebook execution"
       kubespawner_override:
-        image: us-docker.pkg.dev/genai-poc-403304/jupyter-gpu/jupyter-gpu:mistralv2
+        image: us-docker.pkg.dev/genai-poc-403304/genaimodels/genaimodels:v1
         extra_resource_limits:
           # number of gpus needed on the node
           nvidia.com/gpu: "4"
@@ -110,7 +110,7 @@ singleuser:
     - display_name: "GPU A100"
       description: "Creates GPU VMs (A100) as the compute for notebook execution"
       kubespawner_override:
-        image: jupyter/tensorflow-notebook:python-3.10
+        image: us-docker.pkg.dev/genai-poc-403304/genaimodels/genaimodels:v1
         extra_resource_limits:
           nvidia.com/gpu: "2"
           ephemeral-storage: '10Gi'
