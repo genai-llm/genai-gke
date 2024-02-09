@@ -7,7 +7,7 @@ There are two ways to deploy the GenAI workloads on GCP
 
 2) Using manual approach
 
-## Using shell editor tutorial
+# Using shell editor tutorial
 
 Click button below
 #
@@ -89,7 +89,7 @@ which has all required pytorch and cuda components already installed**
 
 Stable Diffusion has  [`two files`](./stable_diffusion_on_ray.ipynb) to be tested on notebooks
 
-## Using manual approach
+# Using manual approach
 
 ## Architecture
 Defaults:

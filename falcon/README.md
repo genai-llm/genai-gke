@@ -1,5 +1,16 @@
 # GenAI on GKE
 
+There are two ways to deploy the GenAI workloads on GCP
+
+1) Using shell editor tutorial
+
+2) Using manual approach
+
+# Using shell editor tutorial
+
+Click button below
+#
+
 [![Deploy using Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/genai-llm/genai-gke.git&cloudshell_tutorial=falcon/tutorial.md&cloudshell_workspace=./)
 
 This repository contains assets related to AI/ML workloads on
@@ -93,6 +104,8 @@ docker build -t falconimage .
 here the name 'falconimage' can be replaced by the artifact repository name and the image name you want to provide and then can be deployed onto the GKE cluster which is already running with gpu nodes enabled or can be deployed on new GKE clusters.
 
 Below are the steps to run the workloads on GCP if you want to skip tutorial through shell editor
+
+# Using manual approach
 
 ## Architecture
 Defaults:
