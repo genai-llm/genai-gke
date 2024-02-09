@@ -1,6 +1,7 @@
-# GenAI on GKE
 
-There are two ways to deploy the GenAI workloads on GCP
+# [Falcon](https://falconllm.tii.ae/) on GKE
+
+There are two ways to deploy the Falcon workloads on GCP
 
 1) Using shell editor tutorial
 

@@ -1,6 +1,6 @@
-# GenAI on GKE
+# [Mistral](https://mistral.ai/) on GKE
 
-There are two ways to deploy the GenAI workloads on GCP
+There are two ways to deploy the Mistral workloads on GCP
 
 1) Using shell editor tutorial
 

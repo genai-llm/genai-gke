@@ -1,6 +1,7 @@
-# GenAI on GKE
 
-There are two ways to deploy the GenAI workloads on GCP
+# [Llama2](https://llama.meta.com/) on GKE
+
+There are two ways to deploy the Llama2 workloads on GCP
 
 1) Using shell editor tutorial
 

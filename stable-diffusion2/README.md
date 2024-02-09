@@ -1,7 +1,7 @@
 
-# GenAI on GKE
+# [Stable Diffusion](https://stability.ai/) on GKE
 
-There are two ways to deploy the GenAI workloads on GCP
+There are two ways to deploy the Stable Diffusion workloads on GCP
 
 1) Using shell editor tutorial
 
