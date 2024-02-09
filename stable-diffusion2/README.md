@@ -10,6 +10,7 @@ There are two ways to deploy the GenAI workloads on GCP
 ## Using shell editor tutorial
 
 Click button below
+#
 [![Deploy using Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/genai-llm/genai-gke.git&cloudshell_tutorial=stable-diffusion2/tutorial.md&cloudshell_workspace=./)
 
 This repository contains assets related to AI/ML workloads on
