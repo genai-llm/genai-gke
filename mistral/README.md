@@ -1,4 +1,4 @@
-# [Mistral](https://mistral.ai/) on GKE
+# [Mistral](https://mistral.ai/) on [GKE](https://cloud.google.com/kubernetes-engine?hl=en)
 
 There are two ways to deploy the Mistral workloads on GCP
 

@@ -1,5 +1,5 @@
 
-# [Stable Diffusion](https://stability.ai/) on GKE
+# [Stable Diffusion](https://stability.ai/) on [GKE](https://cloud.google.com/kubernetes-engine?hl=en)
 
 There are two ways to deploy the Stable Diffusion workloads on GCP
 

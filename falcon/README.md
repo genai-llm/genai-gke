@@ -1,5 +1,5 @@
 
-# [Falcon](https://falconllm.tii.ae/) on GKE
+# [Falcon](https://falconllm.tii.ae/) on [GKE](https://cloud.google.com/kubernetes-engine?hl=en)
 
 There are two ways to deploy the Falcon workloads on GCP
 

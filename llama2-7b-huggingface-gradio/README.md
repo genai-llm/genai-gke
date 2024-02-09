@@ -1,5 +1,5 @@
 
-# [Llama2](https://llama.meta.com/) on GKE
+# [Llama2](https://llama.meta.com/) on [GKE](https://cloud.google.com/kubernetes-engine?hl=en)
 
 There are two ways to deploy the Llama2 workloads on GCP
 
