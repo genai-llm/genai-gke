@@ -63,7 +63,7 @@ create_cluster                       = true
 private_cluster                      = true ## Default true. Use false for a public cluster
 autopilot_cluster                    = false # false = standard cluster, true = autopilot cluster
 cluster_name                         = "ml-cluster"
-kubernetes_version                   = "1.27"
+# kubernetes_version                   = "1.27"
 cluster_regional                     = false
 cluster_region                       = "us-central1-a"
 cluster_zones                        = ["us-central1-a"]
