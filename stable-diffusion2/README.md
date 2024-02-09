@@ -1,5 +1,15 @@
+
 # GenAI on GKE
 
+There are two ways to deploy the GenAI workloads on GCP
+
+1) Using shell editor tutorial
+
+2) Using manual approach
+
+## Using shell editor tutorial
+
+Click button below
 [![Deploy using Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/genai-llm/genai-gke.git&cloudshell_tutorial=stable-diffusion2/tutorial.md&cloudshell_workspace=./)
 
 This repository contains assets related to AI/ML workloads on
@@ -78,7 +88,7 @@ which has all required pytorch and cuda components already installed**
 
 Stable Diffusion has  [`two files`](./stable_diffusion_on_ray.ipynb) to be tested on notebooks
 
-Below are the steps to run the workloads on GCP if you want to skip tutorial through shell editor
+## Using manual approach
 
 ## Architecture
 Defaults:
