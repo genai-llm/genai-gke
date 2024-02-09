@@ -87,7 +87,11 @@ The use of the assets contained in this repository is subject to compliance with
 Also If any changes are required in terms of how the jupyternotebook needs to be deployed changes are required to the below file
 [`config`](../jupyternotebook/jupyter_config/config.yaml)
 
-**we have pre-baked a container image used in the above config file to spin up the jupyter notebook capable of running the genai workloads on gke --> us-docker.pkg.dev/genai-poc-403304/jupyter-gpu/jupyter-gpu:mistralv2
+**we have pre-baked a container image used in the above config file to spin up the jupyter notebook capable of running the genai workloads on gke -->
+
+```bash
+us-docker.pkg.dev/genai-poc-403304/genaimodels/genaimodels:v1
+```
 which has all required pytorch and cuda components already installed**
 
 
