@@ -107,7 +107,6 @@ docker build -t falconimage .
 
 here the name 'falconimage' can be replaced by the artifact repository name and the image name you want to provide and then can be deployed onto the GKE cluster which is already running with gpu nodes enabled or can be deployed on new GKE clusters.
 
-Below are the steps to run the workloads on GCP if you want to skip tutorial through shell editor
 
 # Using manual approach
 
