@@ -1,8 +1,8 @@
 data "google_client_config" "provider" {}
 
-data "google_container_cluster" "falcon_cluster" {
+data "google_container_cluster" "ai_cluster" {
   name       = "jupyter-cluster"
-  location   = "asia-southeast1"
+  location   = "us-central1-a"
   project = var.project_id
 }
 
@@ -19,18 +19,18 @@ provider "google-beta" {
 
 
 provider "kubernetes" {
-  host  = data.google_container_cluster.falcon_cluster.endpoint
+  host  = data.google_container_cluster.ai_cluster.endpoint
   token = data.google_client_config.provider.access_token
   cluster_ca_certificate = base64decode(
-    data.google_container_cluster.falcon_cluster.master_auth[0].cluster_ca_certificate
+    data.google_container_cluster.ai_cluster.master_auth[0].cluster_ca_certificate
   )
 }
 
 provider "kubectl" {
-  host  = data.google_container_cluster.falcon_cluster.endpoint
+  host  = data.google_container_cluster.ai_cluster.endpoint
   token = data.google_client_config.provider.access_token
   cluster_ca_certificate = base64decode(
-    data.google_container_cluster.falcon_cluster.master_auth[0].cluster_ca_certificate
+    data.google_container_cluster.ai_cluster.master_auth[0].cluster_ca_certificate
   )
 }
 

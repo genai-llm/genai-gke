@@ -14,7 +14,7 @@
 
 data "google_client_config" "provider" {}
 
-data "google_container_cluster" "ml_cluster" {
+data "google_container_cluster" "ai_cluster" {
   name       = var.cluster_name
   location   = var.region
   depends_on = [module.gke_autopilot, module.gke_standard]
@@ -31,18 +31,18 @@ provider "google-beta" {
 }
 
 provider "kubernetes" {
-  host  = data.google_container_cluster.ml_cluster.endpoint
+  host  = data.google_container_cluster.ai_cluster.endpoint
   token = data.google_client_config.provider.access_token
   cluster_ca_certificate = base64decode(
-    data.google_container_cluster.ml_cluster.master_auth[0].cluster_ca_certificate
+    data.google_container_cluster.ai_cluster.master_auth[0].cluster_ca_certificate
   )
 }
 
 provider "kubectl" {
-  host  = data.google_container_cluster.ml_cluster.endpoint
+  host  = data.google_container_cluster.ai_cluster.endpoint
   token = data.google_client_config.provider.access_token
   cluster_ca_certificate = base64decode(
-    data.google_container_cluster.ml_cluster.master_auth[0].cluster_ca_certificate
+    data.google_container_cluster.ai_cluster.master_auth[0].cluster_ca_certificate
   )
 }
 

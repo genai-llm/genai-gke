@@ -1,7 +1,7 @@
 variable "project_id" {
   type        = string
   description = "GCP project id"
-  default     = "genai-poc-403304"
+  default     = "genai-on-gke"
 }
 
 variable "region" {

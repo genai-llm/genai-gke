@@ -13,10 +13,12 @@
 # limitations under the License.
 
 ##common variables
-project_id = "falcongenai"
+project_id = "PROJECT_ID"
 
 ##enable APIs
 services = [
+  "serviceusage.googleapis.com",
+  "cloudresourcemanager.googleapis.com"
   "compute.googleapis.com",
   "connectgateway.googleapis.com",
   "container.googleapis.com",
@@ -28,8 +30,7 @@ services = [
   "cloudfunctions.googleapis.com",
   "osconfig.googleapis.com",
   "servicenetworking.googleapis.com",
-  "cloudbuild.googleapis.com",
-  "cloudresourcemanager.googleapis.com"
+  "cloudbuild.googleapis.com"
 ]
 
 #######################################################
