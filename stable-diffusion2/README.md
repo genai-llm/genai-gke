@@ -134,7 +134,7 @@ Face marketplace
 
 For an estimate of the cost of the Google Cloud, see [GKE Pricing](https://cloud.google.com/kubernetes-engine/pricing#google-kubernetes-engine-pricing).
 
-Please use [Cost calculator](https://cloud.google.com/products/calculator/?utm_source=google&utm_medium=cpc&utm_campaign=japac-IN-all-en-dr-BKWS-all-cloud-trial-PHR-dr-1605216&utm_content=text-ad-none-none-DEV_c-CRE_634266788848-ADGP_Hybrid+%7C+BKWS+-+PHR+%7C+Txt+~+GCP_General_google+cloud_price-KWID_43700074200842427-aud-970366092687:kwd-333429931385&userloc_1007788-network_g&utm_term=KW_google+cloud+price&gad_source=1&gclid=CjwKCAiA8sauBhB3EiwAruTRJvNfYHmhx5bKdyYdrRNIJu0kJq3YTd_muXyS5XLP1M8qE2Mj6OoHcBoCp10QAvD_BwE&gclsrc=aw.ds&hl=en)to get the estimated cost
+Please use [Cost calculator](https://cloud.google.com/products/calculator/?utm_source=google&utm_medium=cpc&utm_campaign=japac-IN-all-en-dr-BKWS-all-cloud-trial-PHR-dr-1605216&utm_content=text-ad-none-none-DEV_c-CRE_634266788848-ADGP_Hybrid+%7C+BKWS+-+PHR+%7C+Txt+~+GCP_General_google+cloud_price-KWID_43700074200842427-aud-970366092687:kwd-333429931385&userloc_1007788-network_g&utm_term=KW_google+cloud+price&gad_source=1&gclid=CjwKCAiA8sauBhB3EiwAruTRJvNfYHmhx5bKdyYdrRNIJu0kJq3YTd_muXyS5XLP1M8qE2Mj6OoHcBoCp10QAvD_BwE&gclsrc=aw.ds&hl=en) to get the estimated cost
 
 # Deploy the solution
 
@@ -240,8 +240,7 @@ The following architecture steps will be followed as part of this setup
 
     -   Update terraform variable values to create infrastructure
 
-    -   Update terraform variable values to provide workload
-        > configuration
+    -   Update terraform variable values to provide workload configuration
 
     -   Create a GCS bucket to store terraform state
 
