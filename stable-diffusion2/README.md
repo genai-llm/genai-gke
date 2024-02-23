@@ -1,88 +1,86 @@
 ---
-title: |
-  []{#_a2i594k9wl8a .anchor}Jump Start Solution
+# [Stable Diffusion](https://stability.ai/) on [GKE](https://cloud.google.com/kubernetes-engine?hl=en)
 
-  []{#_fblnh0s13mbx .anchor}Mistral on GKE
 ---
 
 #  
 
 # Table of Content
 
-[**Table of Content 2**](#table-of-content)
+[**Table of Content **](#table-of-content)
 
-[Objectives 3](#objectives)
+[Objectives ](#objectives)
 
-[**Architecture 3**](#architecture)
+[**Architecture **](#architecture)
 
-> [Products used 3](#products-used)
+> [Products used ](#products-used)
 
-[Cost 4](#cost)
+[Cost ](#cost)
 
-[Deploy the solution 4](#deploy-the-solution)
+[Deploy the solution ](#deploy-the-solution)
 
 > [Create or choose a Google Cloud project
-> 4](#create-or-choose-a-google-cloud-project)
+> ](#create-or-choose-a-google-cloud-project)
 >
 > [Get the required IAM permissions
-> 5](#get-the-required-iam-permissions)
+> ](#get-the-required-iam-permissions)
 
 [**Kubernetes Engine Cluster Admin
 5**](#kubernetes-engine-cluster-admin)
 
-[**Kubernetes Engine Admin 5**](#kubernetes-engine-admin)
+[**Kubernetes Engine Admin **](#kubernetes-engine-admin)
 
 > [Service account created for the solution
-> 6](#service-account-created-for-the-solution)
+> ](#service-account-created-for-the-solution)
 >
-> [Choose a deployment method 6](#choose-a-deployment-method)
+> [Choose a deployment method ](#choose-a-deployment-method)
 >
 > [Deploy using shell editor tutorial
-> 7](#deploy-using-shell-editor-tutorial)
+> ](#deploy-using-shell-editor-tutorial)
 >
-> [Deploy using the Terraform CLI 7](#deploy-using-the-terraform-cli)
+> [Deploy using the Terraform CLI ](#deploy-using-the-terraform-cli)
 >
-> [Set up the Terraform client 7](#set-up-the-terraform-client)
+> [Set up the Terraform client ](#set-up-the-terraform-client)
 >
 > [Configure the Terraform variables
-> 8](#configure-the-terraform-variables)
+> ](#configure-the-terraform-variables)
 >
-> [Configure Terraform GCS backend 9](#configure-terraform-gcs-backend)
+> [Configure Terraform GCS backend ](#configure-terraform-gcs-backend)
 >
-> [Create GCS Bucket 9](#create-gcs-bucket)
+> [Create GCS Bucket ](#create-gcs-bucket)
 >
 > [Modify Platform Terraform State Backend
-> 9](#modify-platform-terraform-state-backend)
+> ](#modify-platform-terraform-state-backend)
 >
 > [Validate and review the Terraform configuration
-> 9](#validate-and-review-the-terraform-configuration)
+> ](#validate-and-review-the-terraform-configuration)
 >
-> [Provision the resources 10](#provision-the-resources)
+> [Provision the resources](#provision-the-resources)
 >
-> [Install NVIDIA Drivers 11](#install-nvidia-drivers)
+> [Install NVIDIA Drivers](#install-nvidia-drivers)
 >
-> [Get GKE Cluster Credentials 11](#get-gke-cluster-credentials)
+> [Get GKE Cluster Credentials](#get-gke-cluster-credentials)
 >
 > [Provision Jupyter Notebook Workloads
-> 12](#provision-jupyter-notebook-workloads)
+> ](#provision-jupyter-notebook-workloads)
 >
-> [Running Jupyter Notebook 13](#running-jupyter-notebook)
+> [Running Jupyter Notebook](#running-jupyter-notebook)
 >
-> [Executing the model 14](#executing-the-model)
+> [Executing the model](#executing-the-model)
 >
-> [Delete the deployment 14](#delete-the-deployment)
+> [Delete the deployment](#delete-the-deployment)
 >
-> [Delete using the Terraform CLI 14](#delete-using-the-terraform-cli)
+> [Delete using the Terraform CLI](#delete-using-the-terraform-cli)
 >
-> [Optional: Delete the project 14](#optional-delete-the-project)
+> [Optional: Delete the project](#optional-delete-the-project)
 >
 > [Optional: Delete the service account
-> 15](#optional-delete-the-service-account)
+> ](#optional-delete-the-service-account)
 
-[Troubleshoot errors 15](#troubleshoot-errors)
+[Troubleshoot errors](#troubleshoot-errors)
 
 > [Errors when deploying using the Terraform CLI
-> 15](#errors-when-deploying-using-the-terraform-cli)
+> ](#errors-when-deploying-using-the-terraform-cli)
 
 #  
 
@@ -97,29 +95,27 @@ inferencing on GKE.
 
 # Architecture
 
-![](vertopal_bce50feb59744e8398b4d116b18410c2/media/image4.png){width="6.5in"
-height="3.361111111111111in"}
+![](media/media/image4.png)
 
 ## Products used
 
 The solution uses the following Google Cloud products:
 
--   [[GKE]{.underline}](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview):
+-   [GKE](https://cloud.google.com/kubernetes-engine/docs/concepts/kubernetes-engine-overview):
     > A managed environment for deploying, managing, and scaling
     > containerized applications using Google infrastructure.
 
--   [[Cloud Load
-    > Balancing]{.underline}](https://cloud.google.com/load-balancing):
+-   [Cloud LoadBalancing](https://cloud.google.com/load-balancing):
     > A service that provides high performance, scalable load balancing
     > on Google Cloud.
 
--   [[Cloud Storage]{.underline}](https://cloud.google.com/storage): A
-    > service that provides low-cost, no-limit object storage for
+-   [Cloud Storage](https://cloud.google.com/storage):
+    > A service that provides low-cost, no-limit object storage for
     > diverse data types. Data is accessible from within and outside of
     > Google Cloud and is replicated geo-redundantly.
 
--   [[Cloud Build]{.underline}](https://cloud.google.com/build?hl=en): A
-    > fully managed continuous integration, delivery & deployment
+-   [[Cloud Build]{.underline}](https://cloud.google.com/build?hl=en):
+    > A fully managed continuous integration, delivery & deployment
     > platform that lets you run fast, consistent, reliable automated
     > builds.
 
@@ -127,22 +123,18 @@ Since the solution is to demonstrate open source LLM deployment on GKE,
 the solution uses the following Stable Diffusion V2-1 model from Hugging
 Face marketplace
 
--   [[Stable Diffusion
-    > v2-1]{.underline}](https://huggingface.co/stabilityai/stable-diffusion-2-1):
+-   [Stable Diffusionv2-1](https://huggingface.co/stabilityai/stable-diffusion-2-1):
     > This is a model that can be used to generate and modify images
     > based on text prompts. It is a [[Latent Diffusion
     > Model]{.underline}](https://arxiv.org/abs/2112.10752) that uses a
     > fixed, pretrained text encoder
-    > ([[OpenCLIP-ViT/H]{.underline}](https://github.com/mlfoundations/open_clip))
+    > [OpenCLIP-ViT/H](https://github.com/mlfoundations/open_clip)
 
 # Cost
 
-For an estimate of the cost of the Google Cloud, see [[GKE
-Pricing]{.underline}](https://cloud.google.com/kubernetes-engine/pricing#google-kubernetes-engine-pricing).
+For an estimate of the cost of the Google Cloud, see [GKE Pricing](https://cloud.google.com/kubernetes-engine/pricing#google-kubernetes-engine-pricing).
 
-Please use [[Cost
-calculator]{.underline}](https://cloud.google.com/products/calculator/?utm_source=google&utm_medium=cpc&utm_campaign=japac-IN-all-en-dr-BKWS-all-cloud-trial-PHR-dr-1605216&utm_content=text-ad-none-none-DEV_c-CRE_634266788848-ADGP_Hybrid+%7C+BKWS+-+PHR+%7C+Txt+~+GCP_General_google+cloud_price-KWID_43700074200842427-aud-970366092687:kwd-333429931385&userloc_1007788-network_g&utm_term=KW_google+cloud+price&gad_source=1&gclid=CjwKCAiA8sauBhB3EiwAruTRJvNfYHmhx5bKdyYdrRNIJu0kJq3YTd_muXyS5XLP1M8qE2Mj6OoHcBoCp10QAvD_BwE&gclsrc=aw.ds&hl=en)
-to get the estimated cost
+Please use [Cost calculator](https://cloud.google.com/products/calculator/?utm_source=google&utm_medium=cpc&utm_campaign=japac-IN-all-en-dr-BKWS-all-cloud-trial-PHR-dr-1605216&utm_content=text-ad-none-none-DEV_c-CRE_634266788848-ADGP_Hybrid+%7C+BKWS+-+PHR+%7C+Txt+~+GCP_General_google+cloud_price-KWID_43700074200842427-aud-970366092687:kwd-333429931385&userloc_1007788-network_g&utm_term=KW_google+cloud+price&gad_source=1&gclid=CjwKCAiA8sauBhB3EiwAruTRJvNfYHmhx5bKdyYdrRNIJu0kJq3YTd_muXyS5XLP1M8qE2Mj6OoHcBoCp10QAvD_BwE&gclsrc=aw.ds&hl=en)to get the estimated cost
 
 # Deploy the solution
 
@@ -151,9 +143,7 @@ solution.
 
 ## Create or choose a Google Cloud project
 
-When you deploy the solution, you choose the [[Google Cloud
-project]{.underline}](https://cloud.google.com/resource-manager/docs/creating-managing-projects)
-where the resources are deployed. When you\'re deciding whether to use
+When you deploy the solution, you choose the [Google Cloud project](https://cloud.google.com/resource-manager/docs/creating-managing-projects) where the resources are deployed. When you\'re deciding whether to use
 an existing project or to create a new project, consider the following
 factors:
 
@@ -187,59 +177,17 @@ To create a project, complete the following steps:
 
 To start the deployment process, you need the Identity and Access
 Management (IAM) permissions that are listed in the following table. If
-you have the roles/owner [[basic
-role]{.underline}](https://cloud.google.com/iam/docs/understanding-roles#basic)
-for the project in which you plan to deploy the solution, then you
+you have the roles/owner [basic role](https://cloud.google.com/iam/docs/understanding-roles#basic) for the project in which you plan to deploy the solution, then you
 already have all the necessary permissions. If you don\'t have the
 roles/owner role, then ask your administrator to grant these permissions
 (or the roles that include these permissions) to you.
 
-+-----------------------------+----------------------------------------+
-| IAM Permission/Role         | Predefined role that includes the      |
-| required                    | required permissions                   |
-+=============================+========================================+
-| s                           | [[Service Usage                        |
-| erviceusage.services.enable | Admin]{.underline}](https://c          |
-|                             | loud.google.com/iam/docs/understanding |
-|                             | -roles#serviceusage.serviceUsageAdmin) |
-|                             |                                        |
-|                             | (roles/serviceusage.serviceUsageAdmin) |
-+-----------------------------+----------------------------------------+
-| iam.serviceAccounts.create  | [[Service Account                      |
-|                             | Admin]{.underline}](ht                 |
-|                             | tps://cloud.google.com/iam/docs/unders |
-|                             | tanding-roles#iam.serviceAccountAdmin) |
-|                             |                                        |
-|                             | (roles/iam.serviceAccountAdmin)        |
-+-----------------------------+----------------------------------------+
-| resourcema                  | [[Project IAM                          |
-| nager.projects.setIamPolicy | Admin]{.underline}](https://cl         |
-|                             | oud.google.com/iam/docs/understanding- |
-|                             | roles#resourcemanager.projectIamAdmin) |
-|                             |                                        |
-|                             | (                                      |
-|                             | roles/resourcemanager.projectIamAdmin) |
-+-----------------------------+----------------------------------------+
-| config.deployments.create   | [[Cloud Infrastructure Manager         |
-|                             | Admin]{.und                            |
-| Config.deployments.list     | erline}](https://cloud.google.com/iam/ |
-|                             | docs/understanding-roles#config.admin) |
-| \*Cluster management        |                                        |
-| permissions\*               | (roles/config.admin)                   |
-|                             |                                        |
-| \*Kubernetes object         | # [[Kubernete                          |
-| management permissions\*    | s Engine Cluster Admin]{.underline}](h |
-|                             | ttps://cloud.google.com/iam/docs/under |
-|                             | standing-roles#container.clusterAdmin) |
-|                             |                                        |
-|                             | (roles/container.clusterAdmin)         |
-|                             |                                        |
-|                             | # [[Kubernetes Engine Admin]{.underl   |
-|                             | ine}](https://cloud.google.com/iam/doc |
-|                             | s/understanding-roles#container.admin) |
-|                             |                                        |
-|                             | (roles/container.admin )               |
-+-----------------------------+----------------------------------------+
+- [Service Usage Admin](https://cloud.google.com/iam/docs/understanding-roles#serviceusage.serviceUsageAdmin)
+- [Service Account Admin](https://cloud.google.com/iam/docs/understanding-roles#iam.serviceAccountAdmin)
+- [Project IAM Admin](https://cloud.google.com/iam/docs/understanding-roles#resourcemanager.projectIamAdmin)
+- [Cloud infrastructure Manager Admin](https://cloud.google.com/iam/docs/understanding-roles#config.admin)
+- [Kubernetes Engine Cluster Admin](https://cloud.google.com/iam/docs/understanding-roles#container.clusterAdmin)
+- [Kubernetes Engine Admin](https://cloud.google.com/iam/docs/understanding-roles#container.admin)
 
 ###
 
@@ -312,11 +260,9 @@ There are two ways to deploy the Stable Diffusion workloads on GCP
 
 ## Deploy using shell editor tutorial
 
-Click the link below to open up a Tutorial on Google Cloud Shell editor
-and follow step by step instructions in the Tutorial
-
-[[Cloud Shell
-Tutorial]{.underline}](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/genai-llm/genai-gke.git&cloudshell_tutorial=stable-diffusion2/tutorial.md&cloudshell_workspace=./)
+Click button below to get started
+#
+[![Deploy using Cloud Shell](https://gstatic.com/cloudssh/images/open-btn.svg)](https://ssh.cloud.google.com/cloudshell/editor?cloudshell_git_repo=https://github.com/genai-llm/genai-gke.git&cloudshell_tutorial=stable-diffusion2/tutorial.md&cloudshell_workspace=./)
 
 ## Deploy using the Terraform CLI
 
@@ -472,9 +418,7 @@ deploy the resources.
     > errors that caused the failure. Review the error messages and
     > update the configuration to fix the errors. Then run the terraform
     > apply command again. For help with troubleshooting Terraform
-    > errors, see [[Errors when deploying the solution using the
-    > Terraform
-    > CLI]{.underline}](https://cloud.google.com/architecture/application-development/stateful-app-zero-downtime-deploy-gke#tf-deploy-errors).\
+    > errors, see [Errors when deploying the solution using the Terraform CLI](https://cloud.google.com/architecture/application-development/stateful-app-zero-downtime-deploy-gke#tf-deploy-errors).\
     > After all the resources are created, Terraform displays the
     > following message:
 
@@ -483,38 +427,36 @@ deploy the resources.
 ## Install NVIDIA Drivers
 
 Run the following command to install the nvidia drivers
-
-kubectl apply -f
+```bash
+kubectl apply -f
 https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded-latest.yaml
+```
 
-
 
 This might few minutes to complete the driver installation
 
 ## Get GKE Cluster Credentials
 
 List the container list to list down the cluster that you just created.
+```bash
+gcloud container fleet memberships list
+```
 
-gcloud container fleet memberships list
-
-
-
-\`\`\`gcloud container fleet memberships list\`\`\`
 
 Copy the name and acquire the credentials using the following
-
-gcloud container fleet memberships get-credentials
+```bash
+gcloud container fleet memberships get-credentials
 \[container-fleet-membership-name\]
-
+```
 ## Provision Jupyter Notebook Workloads
 
 Let\'s setup the Jupyter Notebook cluster on the GKE
 
 Navigate to \~/genai-gke/jupyternotebook
 
-cd \~/genai-gke/jupyternotebook
+cd \~/genai-gke/jupyternotebook
 
-
+
 
 -   **Update Terraform Variables for Jupyte**r: Update the terraform
     > variable file (located in ./jupyternotebook/variables.tf) to
@@ -536,14 +478,15 @@ Run Terraform init & plan and check the resources to be created , please
 make changes if any required to terraform files as required and then run
 terraform apply
 
-cd \~/genai-gke/jupyternotebook
+```bash
+cd \~/genai-gke/jupyternotebook
 
 terraform init
 
 terraform plan
 
 terraform apply
-
+```
 ## Running Jupyter Notebook
 
 1.  To view your clusters, go to the **Google Kubernetes Engine** page
@@ -560,43 +503,42 @@ terraform apply
 
 4.  Type in the user credentials as defined in the Jupyter Config yaml
 
-> ![](vertopal_bce50feb59744e8398b4d116b18410c2/media/image3.png){width="2.588542213473316in"
-> height="2.6175798337707787in"}
+> ![](media/media/image3.png)
 
 5.  Once you login, you will be prompted to select appropriate compute
     > instance for the Jupyter Notebook. It is recommended to select GPU
     > T4 for this solution, as GPU A100 availability is limited.
 
-![](vertopal_bce50feb59744e8398b4d116b18410c2/media/image2.png){width="6.5in"
-height="2.736111111111111in"}
+![](media/media/image2.png)
 
 > This would take a few minutes to provision the resources for the
 > notebook. (Note: This also depends on the region and availability of
 > GPU clusters in the region )
 >
-> ![](vertopal_bce50feb59744e8398b4d116b18410c2/media/image1.png){width="6.0625in"
-> height="0.6770833333333334in"}
+> ![](media/media/image1.png)
 
-## Executing the model
+## Executing the model
 
 6.  Execute the **mistral_7b_huggingface.ipynb** notebook cell by cell
     > to see the model executing on the cluster deployed on GKE.
 
-## Delete the deployment
+## Delete the deployment
 
 **Note** : Avoid deleting through console if created using terraform
 
-### Delete using the Terraform CLI
+### Delete using the Terraform CLI
 
 You can now delete the resources by running below command in the
 \~/genai-gke/jupyternotebook and then in \~/genai-gke/platform/platform/
 folders
 
-terraform destroy
+```bash
+terraform destroy
+```
 
-
 
-## Optional: Delete the project
+
+## Optional: Delete the project
 
 If you deployed the solution in a new Google Cloud project, and if you
 no longer need the project, then delete it by completing the following
@@ -629,8 +571,7 @@ operations were completed, but the service account isn\'t deleted.
 Google recommends deleting this service account.
 
 -   If you deployed the solution through the Google Cloud console, go to
-    > the [**[Solution
-    > deployments]{.underline}**](https://console.cloud.google.com/products/solutions/deployments)
+    > the [**[Solution deployments](https://console.cloud.google.com/products/solutions/deployments)
     > page. (If you\'re already on that page, refresh the browser.) A
     > process is triggered in the background to delete the service
     > account. No further action is necessary.
@@ -649,9 +590,9 @@ Google recommends deleting this service account.
         > The email ID of the service account that was created for the
         > solution is in the following format:
 
-goog-sc-*DEPLOYMENT_NAME*-*NNN*@*PROJECT_ID*.iam.gserviceaccount.com
+goog-sc-*DEPLOYMENT_NAME*-*NNN*@*PROJECT_ID*.iam.gserviceaccount.com
 
-4.  The email ID contains the following values:
+4.  The email ID contains the following values:
 
     -   DEPLOYMENT_NAME: the name of the deployment.
 
@@ -662,9 +603,9 @@ Google recommends deleting this service account.
 
 5.  Click **Delete**.
 
-# Troubleshoot errors
+# Troubleshoot errors
 
-## Errors when deploying using the Terraform CLI
+## Errors when deploying using the Terraform CLI
 
 If the deployment fails when you use Terraform, the output of the
 terraform apply command includes error messages that you can review to
