@@ -474,7 +474,7 @@ operations were completed, but the service account isn\'t deleted.
 Google recommends deleting this service account.
 
 -   If you deployed the solution through the Google Cloud console, go to
-    > the [**[Solution deployments](https://console.cloud.google.com/products/solutions/deployments)
+    > the [Solution deployments](https://console.cloud.google.com/products/solutions/deployments)
     > page. (If you\'re already on that page, refresh the browser.) A
     > process is triggered in the background to delete the service
     > account. No further action is necessary.
@@ -483,17 +483,13 @@ Google recommends deleting this service account.
     > the following steps:
 
     1.  In the Google Cloud console, go to the **Service accounts**
-        > page.\
-        > [Go to Service
-        > accounts](https://console.cloud.google.com/iam-admin/serviceaccounts)
+        [Go to Service accounts](https://console.cloud.google.com/iam-admin/serviceaccounts)
 
     2.  Select the project that you used for the solution.
 
-    3.  Select the service account that you want to delete.\
-        > The email ID of the service account that was created for the
+    3.  Select the service account that you want to delete. The email ID of the service account that was created for the
         > solution is in the following format:
-
-goog-sc-*DEPLOYMENT_NAME*-*NNN*@*PROJECT_ID*.iam.gserviceaccount.com
+        goog-sc-*DEPLOYMENT_NAME*-*NNN*@*PROJECT_ID*.iam.gserviceaccount.com
 
 4.  The email ID contains the following values:
 
@@ -501,8 +497,7 @@ goog-sc-*DEPLOYMENT_NAME*-*NNN*@*PROJECT_ID*.iam.gserviceaccount.com
 
     -   NNN: a random 3-digit number.
 
-    -   PROJECT_ID: the ID of the project where you deployed the
-        > solution.
+    -   PROJECT_ID: the ID of the project where you deployed the solution.
 
 5.  Click **Delete**.
 
