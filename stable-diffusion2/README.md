@@ -398,19 +398,15 @@ terraform apply
 > [Go to Google Kubernetes
 > Engine](https://console.cloud.google.com/kubernetes/list)
 
-2.  Select **Gateways, Services & Ingress** under the **Networking**
-    > Section
+2.  Select **Gateways, Services & Ingress** under the **Networking Section**
 
-3.  Click on the **External load balancer** type **proxy-public** **ip
-    > address** listed under the endpoint to launch the Jupyter Notebook
+3.  Click on the **External load balancer** type **proxy-public** **ip address** listed under the endpoint to launch the Jupyter Notebook
 
 4.  Type in the user credentials as defined in the Jupyter Config yaml
 
 > ![](media/media/image3.png)
 
-5.  Once you login, you will be prompted to select appropriate compute
-    > instance for the Jupyter Notebook. It is recommended to select GPU
-    > T4 for this solution, as GPU A100 availability is limited.
+5.  Once you login, you will be prompted to select appropriate compute instance for the Jupyter Notebook. It is recommended to select GPU T4 for this solution, as GPU A100 availability is limited.
 
 ![](media/media/image2.png)
 
@@ -422,8 +418,7 @@ terraform apply
 
 ## Executing the model
 
-6. Execute the **mistral_7b_huggingface.ipynb** notebook cell by cell
-    > to see the model executing on the cluster deployed on GKE.
+6. Execute the **mistral_7b_huggingface.ipynb** notebook cell by cell to see the model executing on the cluster deployed on GKE.
 
 ## Delete the deployment
 
@@ -487,9 +482,8 @@ Google recommends deleting this service account.
 
     2.  Select the project that you used for the solution.
 
-    3.  Select the service account that you want to delete. The email ID of the service account that was created for the
-        > solution is in the following format:
-        goog-sc-*DEPLOYMENT_NAME*-*NNN*@*PROJECT_ID*.iam.gserviceaccount.com
+    3.  Select the service account that you want to delete. The email ID of the service account that was created for the solution is in the following format:
+    >    goog-sc-*DEPLOYMENT_NAME*-*NNN*@*PROJECT_ID*.iam.gserviceaccount.com
 
 4.  The email ID contains the following values:
 
