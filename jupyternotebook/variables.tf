@@ -1,17 +1,17 @@
 variable "project_id" {
   type        = string
   description = "GCP project id"
-  default     = "genai-poc-403304"
+  default     = "PROJECT_ID"
 }
 
 variable "region" {
   type        = string
   description = "GCP project region or zone"
-  default     = "asia-southeast1"
+  default     = "us-central1-a"
 }
 
 variable "cluster_name" {
   type        = string
   description = "GKE cluster name"
-  default     = "jupyter-cluster"
+  default     = "ml-cluster"
 }

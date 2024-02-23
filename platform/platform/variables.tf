@@ -107,7 +107,7 @@ variable "cluster_labels" {
 
 variable "kubernetes_version" {
   type    = string
-  default = "latest"
+  default = "1.28.5-gke.1217000"
 }
 
 variable "cluster_region" {

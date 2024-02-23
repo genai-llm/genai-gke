@@ -36,11 +36,7 @@ cd stable-diffusion2
 ```
  - llama2
  ```commandline
-cd llama2-7b-huggingface-gradio
-```
- - Openai
- ```commandline
-cd openai
+cd llama2
 ```
 
 there are two ways to deploy the workloads either to run the notebooks directly on Jupyter Hub or you can use UI based inference provided through stream lit or Gradio code for which is available in the respective model folders
