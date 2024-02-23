@@ -114,7 +114,7 @@ The solution uses the following Google Cloud products:
     > diverse data types. Data is accessible from within and outside of
     > Google Cloud and is replicated geo-redundantly.
 
--   [[Cloud Build]{.underline}](https://cloud.google.com/build?hl=en):
+-   [Cloud Build](https://cloud.google.com/build?hl=en):
     > A fully managed continuous integration, delivery & deployment
     > platform that lets you run fast, consistent, reliable automated
     > builds.
@@ -125,8 +125,8 @@ Face marketplace
 
 -   [Stable Diffusionv2-1](https://huggingface.co/stabilityai/stable-diffusion-2-1):
     > This is a model that can be used to generate and modify images
-    > based on text prompts. It is a [[Latent Diffusion
-    > Model]{.underline}](https://arxiv.org/abs/2112.10752) that uses a
+    > based on text prompts. It is a [Latent Diffusion
+    > Model](https://arxiv.org/abs/2112.10752) that uses a
     > fixed, pretrained text encoder
     > [OpenCLIP-ViT/H](https://github.com/mlfoundations/open_clip)
 
@@ -193,8 +193,8 @@ roles/owner role, then ask your administrator to grant these permissions
 
 ### Service account created for the solution
 
-When you initiate the deployment process, a [[service
-account]{.underline}](https://cloud.google.com/iam/docs/service-accounts)
+When you initiate the deployment process, a [service
+account](https://cloud.google.com/iam/docs/service-accounts)
 is created to deploy the solution on your behalf (and to delete the
 deployment later if you choose). This service account is assigned
 certain IAM permissions *temporarily*; that is, the permissions are
@@ -232,8 +232,7 @@ The following architecture steps will be followed as part of this setup
 
     -   Registers the cluster with fleet in current project
 
-    -   Solution uses Anthos Connect Gateway to connect to private
-        > clusters
+    -   Solution uses Anthos Connect Gateway to connect to private clusters
 
 -   You\'ll be performing the following activities:
 
@@ -287,7 +286,7 @@ repository.
 
 1.  Clone the GitHub repository to Cloud Shell.
 
-> [[https://github.com/genai-llm/genai-gke.git]{.underline}](https://github.com/genai-llm/genai-gke.git)
+> [https://github.com/genai-llm/genai-gke.git](https://github.com/genai-llm/genai-gke.git)
 >
 > A prompt is displayed to confirm downloading the GitHub repository to
 > Cloud Shell.
@@ -301,18 +300,21 @@ repository.
     > \$HOME/genai-gke/platform/platform. This is the directory
     > containing Terraform config files for the solution. If you need to
     > change to that directory, run the following command:
+```bash
 
-cd \$HOME/genai-gke/platform/platform
+cd \$HOME/genai-gke/platform/platform
 
-4.  Initialize Terraform by running the following command:
+```
+4.  initialize Terraform by running the following command:
+```bash
+terraform init
+```
 
-terraform init
+5.  Wait until you see the following message:
 
-5.  Wait until you see the following message:
+Terraform has been successfully initialized!
 
-Terraform has been successfully initialized!
 
-
 
 ## Configure the Terraform variables
 
@@ -321,72 +323,58 @@ use to customize the deployment based on your requirements. For example,
 you can specify the Google Cloud project and the region where you want
 the solution to be deployed.
 
-1.  Update the terraform tfvars file (located in
-    > ./platform/platform/terraform.tfvars) to provide the input
-    > parameters to allow terraform code execution to provision GKE
-    > resources. This will include input parameters as key value pairs.
-    > Update the values as per your requirements.
-
--   Open terraform.tfvars (located in
-    > ./platform/platform/terraform.tfvars)
-
--   Update all values where required.
+> Update the terraform tfvars file (located in ./platform/platform/terraform.tfvars) to provide the input parameters to allow terraform code execution to provision GKE resources. This will include input parameters as key value pairs. Update the values as per your requirements.
+Open terraform.tfvars (located in ./platform/platform/terraform.tfvars)
+Update all values where required.
 
 ## Configure Terraform GCS backend
 
-You can also configure the GCS bucket to persist the terraform state
+> You can also configure the GCS bucket to persist the terraform state
 file for further use. To configure the terraform backend you need to
 have a GCS bucket already created.
 
 ### Create GCS Bucket
 
-In case you don\'t have a GCS bucket already, you can create using
+> In case you don\'t have a GCS bucket already, you can create using
 terraform or gcloud command as well. Refer below for the gcloud command
 line to create a new GCS bucket.
-
-gcloud storage buckets create gs://BUCKET_NAME
-
-### Modify Platform Terraform State Backend
+```bash
+gcloud storage buckets create gs://BUCKET_NAME
+```
+### Modify Platform Terraform State Backend
 
 Modify the ./platform/backend.tf and uncomment the code and update the
 backend bucket name. Open ./platform/platform/backend.tf
 
 After changes file will look like below:
 
-terraform {
-
+terraform {
 backend \"gcs\" {
-
 bucket = \"BUCKET_NAME\"
-
 prefix = \"terraform/state\"}}
 
-Refer
-[[here]{.underline}](https://cloud.google.com/docs/terraform/resource-management/store-state)
+Refer
+[here](https://cloud.google.com/docs/terraform/resource-management/store-state)
 for more details.
 
 ## Validate and review the Terraform configuration
 
-1.  Ensure the current working directory is
-    > \$HOME/genai-gke/platform/platform. If it isn\'t, go to that
-    > directory.
+1.  Ensure the current working directory is, If it isn\'t, go to that directory
+    > \$HOME/genai-gke/platform/platform.
 
 2.  Verify that the Terraform configuration has no errors:
-
-terraform validate
-
-3.  If the command returns any errors, make the required corrections in
-    > the configuration and then run the terraform validate command
-    > again. Repeat this step until the command returns the following
+```bash
+terraform validate
+```
+3.  If the command returns any errors, make the required corrections in the configuration and then run the terraform validate command again. Repeat this step until the command returns the following
     > message:
+      Success! The configuration is valid.
 
-Success! The configuration is valid.
-
-4.  Review the resources that are defined in the configuration:
-
-terraform plan
-
-If you didn\'t create the terraform.tfvars file correctly, Terraform
+4.  Review the resources that are defined in the configuration:
+```bash
+terraform plan
+```
+If you didn\'t create the terraform.tfvars file correctly, Terraform
 prompts you to enter values for the variables that don\'t have default
 values. Enter the required values.\
 The output of the terraform plan command is a list of the resources that
@@ -399,20 +387,16 @@ validate and terraform plan commands again.
 When no further changes are necessary in the Terraform configuration,
 deploy the resources.
 
-1.  Ensure the current working directory is
-    > \$HOME/genai-gke/platform/platform. If it isn\'t, go to that
-    > directory.
+1.  Ensure the current working directory is,If it isn\'t, go to that directory
+    > \$HOME/genai-gke/platform/platform
 
 2.  Apply the Terraform configuration:
+```bash
+terraform apply
+```
+3.  If you didn\'t create the terraform.tfvars file as described earlier, Terraform prompts you to enter values for the variables that don\'t have default values. Enter the required values.Terraform displays a list of the resources that will be created.
 
-terraform apply
-
-3.  If you didn\'t create the terraform.tfvars file as described
-    > earlier, Terraform prompts you to enter values for the variables
-    > that don\'t have default values. Enter the required values.
-    > Terraform displays a list of the resources that will be created.
-
-4.  When you\'re prompted to perform the actions, enter yes.\
+4.  When you\'re prompted to perform the actions, enter `yes`.\
     > Terraform displays messages showing deployment progress.\
     > If the deployment can\'t be completed, Terraform displays the
     > errors that caused the failure. Review the error messages and
@@ -421,10 +405,9 @@ deploy the resources.
     > errors, see [Errors when deploying the solution using the Terraform CLI](https://cloud.google.com/architecture/application-development/stateful-app-zero-downtime-deploy-gke#tf-deploy-errors).\
     > After all the resources are created, Terraform displays the
     > following message:
+    Apply complete!
 
-Apply complete!
-
-## Install NVIDIA Drivers
+## Install NVIDIA Drivers
 
 Run the following command to install the nvidia drivers
 ```bash
@@ -448,7 +431,7 @@ Copy the name and acquire the credentials using the following
 gcloud container fleet memberships get-credentials
 \[container-fleet-membership-name\]
 ```
-## Provision Jupyter Notebook Workloads
+## Provision Jupyter Notebook Workloads
 
 Let\'s setup the Jupyter Notebook cluster on the GKE
 
@@ -487,7 +470,7 @@ terraform plan
 
 terraform apply
 ```
-## Running Jupyter Notebook
+## Running Jupyter Notebook
 
 1.  To view your clusters, go to the **Google Kubernetes Engine** page
     > in the Google Cloud console.
@@ -517,16 +500,16 @@ terraform apply
 >
 > ![](media/media/image1.png)
 
-## Executing the model
+## Executing the model
 
-6.  Execute the **mistral_7b_huggingface.ipynb** notebook cell by cell
+6. Execute the **mistral_7b_huggingface.ipynb** notebook cell by cell
     > to see the model executing on the cluster deployed on GKE.
 
-## Delete the deployment
+## Delete the deployment
 
 **Note** : Avoid deleting through console if created using terraform
 
-### Delete using the Terraform CLI
+### Delete using the Terraform CLI
 
 You can now delete the resources by running below command in the
 \~/genai-gke/jupyternotebook and then in \~/genai-gke/platform/platform/
@@ -538,7 +521,7 @@ terraform destroy
 
 
 
-## Optional: Delete the project
+## Optional: Delete the project
 
 If you deployed the solution in a new Google Cloud project, and if you
 no longer need the project, then delete it by completing the following
@@ -603,9 +586,9 @@ goog-sc-*DEPLOYMENT_NAME*-*NNN*@*PROJECT_ID*.iam.gserviceaccount.com
 
 5.  Click **Delete**.
 
-# Troubleshoot errors
+# Troubleshoot errors
 
-## Errors when deploying using the Terraform CLI
+## Errors when deploying using the Terraform CLI
 
 If the deployment fails when you use Terraform, the output of the
 terraform apply command includes error messages that you can review to
@@ -620,7 +603,7 @@ If you create a project and then immediately attempt to deploy the
 solution in the new project, the deployment might fail with an error
 like the following:
 
-Error: Error creating Network: googleapi: Error 403: Compute Engine API
+Error: Error creating Network: googleapi: Error 403: Compute Engine API
 has not been used in project *PROJECT_ID* before or it is disabled.
 Enable it by visiting
 
@@ -629,5 +612,5 @@ https://console.developers.google.com/apis/api/compute.googleapis.com/overview?p
 then retry. If you enabled this API recently, wait a few minutes for the
 action to propagate to our systems and retry.
 
-If this error occurs, wait a few minutes and then run the terraform
+If this error occurs, wait a few minutes and then run the terraform
 apply command again.
